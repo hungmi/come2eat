@@ -1,0 +1,16 @@
+<h2>Create New Order</h2>
+
+<% unless user_signed_in? %>
+  <div id="before_order_login_form">
+    <%= render 'partial/log_in' %>
+  </div>
+  <div id="you_can_order_now" class="hide">
+    <p>Sign in successfully!</p>
+  </div>
+<% end %>
+
+<%= simple_form_for(@order, url: orders_path) do |f| %>
+  <%= f.input :location_id, as: :select, collection: Location.all, value: :id,:include_blank => false  %>
+  <%= f.input :description, html: { rows: 7 } %>
+  <%= f.submit 'Create', class:'btn btn-primary' %>
+<% end %>

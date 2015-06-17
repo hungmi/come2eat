@@ -1,0 +1,5 @@
+<h2>Create New Location</h2>
+<%= simple_form_for(@location, url: admin_locations_path) do |f| %>
+  <%= f.input :name %>
+  <%= f.submit 'Create', class:'btn btn-primary' %>
+<% end %>

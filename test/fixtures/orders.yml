@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id_id: 
+  location_id_id: 
+  restaurant_id_id: 
+  food_id_id: 
+  description: MyText
+  finished: false
+
+two:
+  user_id_id: 
+  location_id_id: 
+  restaurant_id_id: 
+  food_id_id: 
+  description: MyText
+  finished: false
