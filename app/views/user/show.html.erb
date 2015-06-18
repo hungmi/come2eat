@@ -1,6 +1,6 @@
 <div class="col-md-12">
 
-  <h2 class="text-center"> Your Orders </h2>
+  <h2 class="text-center"> All Orders </h2>
 
   <% if @orders.exists? %>
   
@@ -19,9 +19,9 @@
         <% @orders.each do |order| %>
           <tr>
             <td> <%= order.name %> </td>
-            <td> <%= order.user.email %> </td>
-            <td> <%= order.location.name %> </td>
-            <td> <%= order.updated_at.to_formatted_s(:short) %> </td> 
+            <td> <%= order.user %> </td>
+            <td> <%= order.location_id %> </td>
+            <td> <%= order.updated_at %> </td> 
             <td> <%= link_to('Edit', edit_order_path(order), class: "btn btn-info") %></td>
             <td> <%= link_to('Delete', order_path(order), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger") %></td>
           </tr>

@@ -5,11 +5,11 @@ class OrdersController < ApplicationController
   #before_action :previous_page
 
   def new
-    @order = Order.new
+    @order = current_user.orders.new
   end
 
   def create
-    @order = Order.create(order_params)
+    @order = current_user.orders.create(order_params)
     if @order.save
       flash[:success] = 'New Order Added!'
       redirect_to orders_path
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all.order('updated_at DESC')
+    @orders = current_user.orders.order('updated_at DESC')
   end
 
   def show
@@ -54,6 +54,6 @@ class OrdersController < ApplicationController
   end
 
   def set_order
-    @order = Order.find(params[:id])
+    @order = current_user.orders.find(params[:id])
   end
 end
