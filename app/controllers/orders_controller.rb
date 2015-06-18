@@ -5,7 +5,11 @@ class OrdersController < ApplicationController
   #before_action :previous_page
 
   def new
-    @order = current_user.orders.new
+    if current_user
+      @order = current_user.orders.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def create
