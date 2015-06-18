@@ -1,0 +1,31 @@
+<div class="col-md-12">
+
+  <h2 class="text-center"> Your Foods </h2>
+
+  <% if @foods.exists? %>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th> Name </th>
+          <th> Last Update </th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @foods.each do |food| %>
+          <tr>
+            <td> <%= food.name %> </td>
+            <td> <%= food.updated_at.to_formatted_s(:short) %> </td> 
+            <td> <%= link_to('Edit', edit_restaurant_food_path(food), class: "btn btn-info") %></td>
+            <td> <%= link_to('Delete', restaurant_food_path(food), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", remote: true) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% else %>
+    <p>There is no food yet. <%= link_to 'Create now ?', new_restaurant_food_path %></p>
+  <% end %>
+</div>

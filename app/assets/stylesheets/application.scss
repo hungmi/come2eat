@@ -16,3 +16,12 @@
 
 @import "bootstrap";
 @import "font-awesome";
+
+.restaurant {
+  nav {
+    background-color: crimson;
+    a {
+      color: white !important;
+    }
+  }
+}

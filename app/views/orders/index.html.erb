@@ -18,7 +18,7 @@
       
       <tbody>
         <% @orders.each do |order| %>
-          <tr id= <%= "#{order.user.email}_order_#{ order.id }" %> >
+          <tr>
             <td> <%= order.name %> </td>
             <td> <%= order.user.email %> </td>
             <td> <%= order.location.name %> </td>
@@ -32,6 +32,6 @@
     </table>
 
   <% else %>
-    <p>There is no order yet.<%= link_to 'Create now ?', new_order_path %></p>
+    <p>There is no order yet. <%= link_to 'Create now ?', new_order_path %></p>
   <% end %>
 </div>
