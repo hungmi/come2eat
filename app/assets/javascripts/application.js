@@ -17,8 +17,10 @@
 //= require turbolinks
 //= require_tree .
 $(function() {
+
   $('#before_order_login_form').on('ajax:success', function() {
     $(this).addClass('hide');
     $('#you_can_order_now').removeClass('hide');
   });
+
 });

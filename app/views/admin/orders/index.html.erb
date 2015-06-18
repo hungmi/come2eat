@@ -1,6 +1,6 @@
 <div class="col-md-12">
 
-  <h2 class="text-center"> Your Orders </h2>
+  <h2 class="text-center"> All Orders </h2>
 
   <% if @orders.exists? %>
   
@@ -8,8 +8,8 @@
       <thead>
         <tr>
           <th> Name </th>
-          <th> User </th>
           <th> Location </th>
+          <th> User </th>
           <th> Description </th>
           <th> Last Update </th>
           <th colspan="2"></th>
@@ -20,12 +20,12 @@
         <% @orders.each do |order| %>
           <tr id= <%= "#{order.user.email}_order_#{ order.id }" %> >
             <td> <%= order.name %> </td>
-            <td> <%= order.user.email %> </td>
             <td> <%= order.location.name %> </td>
+            <td> <%= order.user.email %> </td>
             <td> <%= order.description %> </td>
             <td> <%= order.updated_at.to_formatted_s(:short) %> </td> 
-            <td> <%= link_to('Edit', edit_order_path(order), class: "btn btn-info") %></td>
-            <td> <%= link_to('Delete', order_path(order), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", remote: true) %></td>
+            <td> <%= link_to('Edit', edit_admin_order_path(order), class: "btn btn-info") %></td>
+            <td> <%= link_to('Delete', admin_order_path(order), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", remote: true) %></td>
           </tr>
         <% end %>
       </tbody>

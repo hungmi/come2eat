@@ -1,6 +1,7 @@
 <h2>Edit Order <%= @order.id %></h2>
 
-<%= simple_form_for(@order, url: order_path, method: :patch) do |f| %>
+<%= simple_form_for(@order, url: admin_order_path, method: :patch) do |f| %>
+  <%= @order.user.email %>
   <%= f.input :location_id, as: :select, collection: Location.all, value: :id,:include_blank => false %>
   <%= f.input :description, html: { rows: 7 } %>
   <%= f.submit 'Update', class:'btn btn-primary' %>

@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(Order_params)
+    if @order.update(order_params)
       flash[:success] = 'Order Updated!'
       redirect_to orders_path
     else
@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:user_id, :location_id, :restaurant_id, :food_id)
+    params.require(:order).permit(:user_id, :location_id, :restaurant_id, :food_id, :description)
   end
 
   def set_order

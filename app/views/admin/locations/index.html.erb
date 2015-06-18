@@ -8,7 +8,6 @@
       <thead>
         <tr>
           <th> Name </th>
-          <th> Last Update </th>
           <th colspan="2"></th>
         </tr>
       </thead>
@@ -17,7 +16,6 @@
         <% @locations.each do |location| %>
           <tr>
             <td> <%= location.name %> </td> 
-            <td> <%= location.updated_at %> </td> 
             <td> <%= link_to('Edit', edit_admin_location_path(location), class: "btn btn-info") %></td>
             <td> <%= link_to('Delete', admin_location_path(location), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger") %></td>
           </tr>
@@ -26,6 +24,6 @@
     </table>
 
   <% else %>
-    <p>There is no location yet.<%= link_to 'Create now?', new_admin_location_path %></p>
+    <p>There is no location yet.<%= link_to 'Create now ?', new_admin_location_path %></p>
   <% end %>
 </div>
