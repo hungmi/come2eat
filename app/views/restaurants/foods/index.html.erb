@@ -1,6 +1,7 @@
 <div class="col-md-12">
 
   <h2 class="text-center"> Your Foods </h2>
+  <%= link_to "Add New", new_restaurant_food_path(current_restaurant.id) %>
 
   <% if @foods.exists? %>
   
@@ -18,8 +19,8 @@
           <tr>
             <td> <%= food.name %> </td>
             <td> <%= food.updated_at.to_formatted_s(:short) %> </td> 
-            <td> <%= link_to('Edit', edit_restaurant_food_path(food), class: "btn btn-info") %></td>
-            <td> <%= link_to('Delete', restaurant_food_path(food), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", remote: true) %></td>
+            <td> <%= link_to('Edit', edit_restaurant_food_path(current_restaurant.id, food.id), class: "btn btn-info") %></td>
+            <td> <%= link_to('Delete', restaurant_food_path(current_restaurant.id, food.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", remote: true) %></td>
           </tr>
         <% end %>
       </tbody>

@@ -1,0 +1,6 @@
+<h2>Edit Food</h2>
+
+<%= simple_form_for(@food, url: restaurant_food_path(current_restaurant.id, @food.id)) do |f| %>
+  <%= f.input :name %>
+  <%= f.submit 'Update', class:'btn btn-primary' %>
+<% end %>

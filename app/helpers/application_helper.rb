@@ -16,4 +16,37 @@ module ApplicationHelper
 
     alerts.join("\n").html_safe
   end
+
+  def index_or_login_links(condition, link_text, another_link_text)
+    if condition == 'restaurant'
+      return content_tag(:p, class:'text-center') do
+        if current_restaurant
+          raw(link_to link_text, restaurant_foods_path(current_restaurant.id))
+        else
+          raw(link_to another_link_text, new_restaurant_session_path)
+        end
+      end
+    end
+    if condition == 'admin'
+      return content_tag(:p, class:'text-center') do
+        if current_admin
+          raw(link_to link_text, admin_orders_path)
+        else
+          raw(link_to another_link_text, new_admin_session_path)
+        end
+      end
+    end
+
+  end
+
+  def conditional_links(condition, link, link_text, another_link, another_link_text)
+    content_tag(:p, class:'text-center') do
+      if condition
+        raw(link_to link_text, link)
+      else
+        raw(link_to another_link_text, another_link)
+      end
+    end
+  end
+
 end

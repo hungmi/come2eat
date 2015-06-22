@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
-  namespace :restaurant do
+  devise_for :users
+
+  devise_for :restaurants
+
+  devise_for :admins
+
+  resources :restaurants do
     get 'orders' => 'orders#index'
-    resources :foods
+    resources :foods, controller: 'restaurants/foods'
   end
 
   namespace :admin do
     resources :locations
     resources :orders
   end
-
-  devise_for :users
-
-  devise_for :restaurants
-
-  devise_for :admins
 
   resources :orders
 

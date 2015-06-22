@@ -1,4 +1,7 @@
-class Restaurant::FoodsController < RestaurantsController
+class Restaurants::FoodsController < RestaurantsController
+
+  before_action :set_food, except: [:new, :create, :index]
+
   def new
     if current_restaurant
       @food = current_restaurant.foods.new
@@ -22,6 +25,13 @@ class Restaurant::FoodsController < RestaurantsController
   end
 
   def update
+    if @food.update(food_params)
+      flash[:success] = 'Food Updated!'
+      redirect_to restaurant_foods_path
+    else
+      flash[:danger] = 'Failed!'
+      render :edit
+    end
   end
 
   def index
@@ -32,6 +42,13 @@ class Restaurant::FoodsController < RestaurantsController
   end
 
   def destroy
+    if @food.destroy
+      flash[:success] = 'Food Deleted!'
+      redirect_to restaurant_foods_path
+    else
+      flash[:danger] = 'Failed!'
+      render :index
+    end    
   end
 
   private
@@ -39,6 +56,6 @@ class Restaurant::FoodsController < RestaurantsController
     params.require(:food).permit(:name)
   end
   def set_food
-    @food = Food.find(params[:id])
+    @food = current_restaurant.foods.find(params[:id])
   end
 end
