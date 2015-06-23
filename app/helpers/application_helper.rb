@@ -1,4 +1,7 @@
 module ApplicationHelper
+
+  def comment; end
+
   def notice_message
     alert_types = { notice: :success, alert: :danger }
 

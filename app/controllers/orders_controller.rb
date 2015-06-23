@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   def new
     if current_user
       @order = current_user.orders.new
+      #2.times { @order.fooditems.build }
     else
       redirect_to new_user_session_path
     end
@@ -55,11 +56,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:user_id, :location_id, :restaurant_id, :food_id, :description)
-  end
-
-  def fooditem_params
-    params.require(:fooditem).permit(:food_id, :order_id, :restaurant_id, :quantity)
+    params.require(:order).permit(:name, :user_id, :location_id, :description, fooditems_attributes: [:food_id, :restaurant_id, :quantity])
   end
 
   def set_order
