@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 
   devise_for :admins
 
-  post 'orders/:order_id/add_food/:food_id' => 'food_orders#create', as: :add_food_item
-
   resources :restaurants do
     get 'orders' => 'orders#index'
     resources :foods, controller: 'restaurants/foods'
