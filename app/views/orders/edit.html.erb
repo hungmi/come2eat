@@ -1,36 +1,40 @@
 <h2>點餐號碼： <%= @order.id %> | 取餐地點： <%= @order.location.name %></h2>
 
-<%= simple_form_for(@order, url: order_path, method: :patch) do |f| %>
+<%= simple_form_for(@order, url: order_path, method: :patch, html: {multipart: true}) do |f| %>
   <%#= f.input :location_id, as: :select, collection: Location.all, value: :id,:include_blank => false %>
   <%= f.input :description, html: { rows: 7 } %>
-  <%= f.submit '預覽訂單', class:'btn btn-primary' %>
-<% end %>
 
-<% if @order.fooditems.exists? %>
+  <% if @order.fooditems.exists? %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th> User </th>
-        <th> Restaurant </th>
-        <th> Food Name </th>
-        <th> Last Update </th>
-        <th></th>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <% @order.fooditems.each do |food| %>
+    <table class="table">
+      <thead>
         <tr>
-          <td> <%= food.order.user.email %> </td>
-          <td> <%= food.restaurant.name %> </td>
-          <td> <%= food.food.name %> </td>
-          <td> <%= food.updated_at.to_formatted_s(:short) %> </td>
-          <td> <%= link_to('Delete', fooditem_path(order_id: @order.id, id: food.id), method: :delete, class: "btn btn-danger") %></td>
+          <th> User </th>
+          <th> Restaurant </th>
+          <th> Food Name </th>
+          <th> Quantity </th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      
+      <tbody>
+        <% @order.fooditems.each do |food| %>
+          <%#= simple_form_for(food, url: fooditem_path(food), method: :patch) do |f| %>
+            <tr>
+              <td> <%= food.order.user.email %> </td>
+              <td> <%= food.restaurant.name %> </td>
+              <td> <%= food.food.name %> </td>
+              <td> <%= food.quantity %> </td>
+              <td><%= link_to('Delete', fooditem_path(order_id: @order.id, id: food.id), method: :delete, class: "btn btn-danger") %></td>
+            </tr>
+          <%# end %>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% end %>
+
+  <%= f.submit '預覽訂單', class:'btn btn-primary' %>
 
 <% end %>
 

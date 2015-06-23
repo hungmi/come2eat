@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     else
       flash[:danger] = 'Failed!'
       render :edit
-    end      
+    end
   end
 
   def index
@@ -56,6 +56,10 @@ class OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:user_id, :location_id, :restaurant_id, :food_id, :description)
+  end
+
+  def fooditem_params
+    params.require(:fooditem).permit(:food_id, :order_id, :restaurant_id, :quantity)
   end
 
   def set_order

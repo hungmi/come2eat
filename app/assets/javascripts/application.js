@@ -23,4 +23,9 @@ $(function() {
     $('#you_can_order_now').removeClass('hide');
   });
 
+  $('.fooditem_quantity').on('change', function() {
+    console.log('aaa');
+
+  });
+
 });
