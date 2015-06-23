@@ -1,2 +1,36 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="col-md-12">
+
+  <h2 class="text-center">
+    <%= link_to edit_order_path(@order.id) do %>
+      點餐號碼： <%= @order.id %>
+    <% end %>
+    | 取餐地點： <%= @order.location.name %>
+  </h2>
+
+  <% if @order.fooditems.exists? %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th> User </th>
+          <th> Restaurant </th>
+          <th> Food Name </th>
+          <th> Last Update </th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @order.fooditems.each do |food| %>
+          <tr>
+            <td> <%= food.order.user.email %> </td>
+            <td> <%= food.restaurant.name %> </td>
+            <td> <%= food.food.name %> </td>
+            <td> <%= food.updated_at.to_formatted_s(:short) %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% end %>
+
+</div>

@@ -1,7 +1,61 @@
-<h2>Edit Order <%= @order.id %></h2>
+<h2>點餐號碼： <%= @order.id %> | 取餐地點： <%= @order.location.name %></h2>
 
 <%= simple_form_for(@order, url: order_path, method: :patch) do |f| %>
-  <%= f.input :location_id, as: :select, collection: Location.all, value: :id,:include_blank => false %>
+  <%#= f.input :location_id, as: :select, collection: Location.all, value: :id,:include_blank => false %>
   <%= f.input :description, html: { rows: 7 } %>
-  <%= f.submit 'Update', class:'btn btn-primary' %>
+  <%= f.submit '預覽訂單', class:'btn btn-primary' %>
+<% end %>
+
+<% if @order.fooditems.exists? %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> User </th>
+        <th> Restaurant </th>
+        <th> Food Name </th>
+        <th> Last Update </th>
+        <th></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @order.fooditems.each do |food| %>
+        <tr>
+          <td> <%= food.order.user.email %> </td>
+          <td> <%= food.restaurant.name %> </td>
+          <td> <%= food.food.name %> </td>
+          <td> <%= food.updated_at.to_formatted_s(:short) %> </td>
+          <td> <%= link_to('Delete', fooditem_path(order_id: @order.id, id: food.id), method: :delete, class: "btn btn-danger") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<% if @foods.exists? %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> Restaurant </th>
+        <th> Name </th>
+        <th> Last Update </th>
+        <th></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td> <%= food.restaurant.name %> </td>
+          <td> <%= food.name %> </td>
+          <td> <%= food.updated_at.to_formatted_s(:short) %> </td>
+          <td> <%= link_to('Add', fooditems_path(order_id: @order.id, restaurant_id: food.restaurant.id, food_id: food.id), method: :post, class: "btn btn-success", remote: true) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 <% end %>
