@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618055127) do
+ActiveRecord::Schema.define(version: 20150622081252) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20150618055127) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "food_orders", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "food_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "food_orders", ["food_id"], name: "index_food_orders_on_food_id"
+  add_index "food_orders", ["order_id"], name: "index_food_orders_on_order_id"
 
   create_table "foods", force: :cascade do |t|
     t.string   "name"
