@@ -1,5 +1,14 @@
 class FooditemsController < ApplicationController
 
+  def new
+    @order = Order.find(params[:order_id])
+    @fooditem = @order.fooditems.new
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
   def update
     @fooditem = Fooditem.find(params[:id])
     if @fooditem.update(fooditem_params)

@@ -23,8 +23,8 @@
         <% @order.fooditems.each do |food| %>
           <tr>
             <td> <%= food.order.user.email %> </td>
-            <td> <%= food.restaurant.name %> </td>
-            <td> <%= food.food.name %> </td>
+            <td> <%= food.restaurant.name if food.restaurant %> </td>
+            <td> <%= food.food.name if food.food %> </td>
             <td> <%= food.updated_at.to_formatted_s(:short) %> </td>
           </tr>
         <% end %>

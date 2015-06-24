@@ -3,35 +3,22 @@
 <%= simple_form_for(setup_order(@order), url: order_path, method: :patch) do |f| %>
   <%#= f.input :location_id, as: :select, collection: Location.all, value: :id,:include_blank => false %>
   <%= f.input :description, html: { rows: 7 } %>
-
-  <% if @foods.exists? %>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th> User </th>
-          <th> Restaurant </th>
-          <th> Food Name </th>
-          <th> Quantity </th>
-          <th></th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <%= f.simple_fields_for :fooditems do |q| %>
-          <tr>
-            <td><%= q.input :order_id, value: @order.id, label: false %></td>
-            <td><%= q.input :restaurant_id, as: :select, collection: Restaurant.all, label: false %></td>
-            <!-- TODO: display name -->
-            <td><%= q.input :food_id, as: :select, collection: Food.all, label: false %></td>
-            <td><%= q.input :quantity, label: false %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= f.submit '預覽訂單', class:'btn btn-primary' %>
-
-  <% end %> <!-- foods.exist? end -->
-
+  <%= f.submit '預覽訂單', class:'btn btn-primary' %>
 <% end %> <!-- simple_form end -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th> Restaurant </th>
+      <th> Food Name </th>
+      <th> Quantity </th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr id="fooditem-form"><%= render 'fooditems/form' %></tr>
+    <tr id="fooditems"></tr>
+    <tr><%= link_to 'New Item', new_fooditem_path(order_id: @order.id), remote: true %></tr>
+  </tbody>
+</table>

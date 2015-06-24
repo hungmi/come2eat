@@ -26,12 +26,14 @@ class OrdersController < ApplicationController
 
   def edit
     @foods = Food.all
+    @fooditem = @order.fooditems.build
+    @fooditems = @order.fooditems
   end
 
   def update
     if @order.update(order_params)
       flash[:success] = 'Order Updated!'
-      redirect_to order_path(@order)
+      render :edit
     else
       flash[:danger] = 'Failed!'
       render :edit
@@ -56,7 +58,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :user_id, :location_id, :description, fooditems_attributes: [:food_id, :restaurant_id, :quantity])
+    params.require(:order).permit(:name, :user_id, :location_id, :description, fooditems_attributes: [:id, :food_id, :restaurant_id, :quantity, :_destroy])
   end
 
   def set_order
