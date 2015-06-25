@@ -17,7 +17,25 @@
   </thead>
   
   <tbody>
-    <tr id="fooditem-form"><%= render 'fooditems/form' %></tr>
+    <% @fooditem = @order.fooditems.new %>
+    <%= simple_form_for(@fooditem, url: fooditems_path(params[:fooditem]), method: :post, remote: true) do |q| %>
+      <tr>
+        <td><%= q.input :restaurant_id, as: :select, collection: Restaurant.all, label: false, :include_blank => '選擇餐廳' %></td>
+        <!-- TODO: display name -->
+        <td><%= q.input :food_id, as: :select, collection: Food.all, label: false, :include_blank => '選擇餐點' %></td>
+        <td><%= q.input :quantity, label: false %></td>
+        <td>
+          <% if q.object.persisted? %>
+            <%= q.check_box :_destroy %>
+            <%= q.label :_destroy, "Destroy" %>
+          <% end %>
+        </td>
+        <td>
+          <%= q.submit 'Sure' %>
+        </td>
+      </tr>
+    <% end %>
+    <tr id="fooditem-form" style="display:none;"></tr>
     <tr id="fooditems"></tr>
     <tr><%= link_to 'New Item', new_fooditem_path(order_id: @order.id), remote: true %></tr>
   </tbody>

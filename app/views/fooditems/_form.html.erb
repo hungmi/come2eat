@@ -1,5 +1,5 @@
         <%# comment do %>
-<%= simple_form_for(@fooditem, url: fooditems_path(order_id: @order.id), method: :post) do |q| %>
+<%= simple_form_for(@fooditem, url: fooditems_path(order_id: @order.id, food_id: food_id_for_item), method: :post, remote: true) do |q| %>
   <tr>
     <td><%= q.input :restaurant_id, as: :select, collection: Restaurant.all, label: false, :include_blank => '選擇餐廳' %></td>
     <!-- TODO: display name -->

@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
 
   def edit
     @foods = Food.all
-    @fooditem = @order.fooditems.build
+    #@fooditem = @order.fooditems.new
     @fooditems = @order.fooditems
   end
 

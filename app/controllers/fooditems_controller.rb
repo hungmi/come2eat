@@ -5,7 +5,6 @@ class FooditemsController < ApplicationController
     @fooditem = @order.fooditems.new
     respond_to do |format|
       format.js
-      format.html
     end
   end
 
@@ -31,9 +30,9 @@ class FooditemsController < ApplicationController
   end
 
   def create
-    @order = Order.find(params[:order_id])
-    @food = Food.find(params[:food_id])
-    @fooditem = @order.fooditems.build({ restaurant: @food.restaurant, food: @food })
+    #@order = Order.find(params[:id])
+    #@food = Food.find(params[:fooditem][:food_id])
+    @fooditem = @order.fooditems.create({ restaurant: @food.restaurant, food: @food })
     if @fooditem.save
       flash[:success] = 'Add successfully!'
       redirect_to edit_order_path(@order.id)
