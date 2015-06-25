@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
   def new
     if current_user
       @order = current_user.orders.new
-      #2.times { @order.fooditems.build }
     else
       redirect_to new_user_session_path
     end
@@ -58,7 +57,15 @@ class OrdersController < ApplicationController
 
   private
   def order_params
+<<<<<<< HEAD
     params.require(:order).permit(:name, :user_id, :location_id, :description, fooditems_attributes: [:id, :food_id, :restaurant_id, :quantity, :_destroy])
+=======
+    params.require(:order).permit(:user_id, :location_id, :restaurant_id, :food_id, :description)
+  end
+
+  def fooditem_params
+    params.require(:fooditem).permit(:food_id, :order_id, :restaurant_id, :quantity)
+>>>>>>> parent of 1481ee6... add accept_nested_attributes_for fooditems in order.rb
   end
 
   def set_order
