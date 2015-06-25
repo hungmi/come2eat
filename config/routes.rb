@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :fooditems
+  #resources :fooditems
+
+  resources :orders do
+    post 'fooditems/create' => 'orders#create_fooditem'
+    get 'fooditems/new' => 'orders#new_fooditem'
+  end
 
   #delete 'orders/:order_id/fooditems/:fooditem_id' => 'fooditems#destroy', as: :remove_fooditem
   # dont use route to pass params, set hash in view.
@@ -20,8 +25,6 @@ Rails.application.routes.draw do
     resources :locations
     resources :orders
   end
-
-  resources :orders
 
   root 'orders#new'
   # The priority is based upon order of creation: first created -> highest priority.

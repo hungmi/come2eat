@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(order_params)
+    if @order.update_attributes(order_params)
       flash[:success] = 'Order Updated!'
       render :edit
     else
@@ -43,8 +43,7 @@ class OrdersController < ApplicationController
     @orders = current_user.orders.order('updated_at DESC')
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     if @order.destroy
@@ -55,17 +54,19 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def create_fooditem
+    @fooditem = @order.fooditems.create({"food_id"=>"1", "restaurant_id"=>"1", "order_id"=>"28"})
+    @fooditem.save
+  end
+
   private
   def order_params
-<<<<<<< HEAD
     params.require(:order).permit(:name, :user_id, :location_id, :description, fooditems_attributes: [:id, :food_id, :restaurant_id, :quantity, :_destroy])
-=======
-    params.require(:order).permit(:user_id, :location_id, :restaurant_id, :food_id, :description)
   end
 
   def fooditem_params
-    params.require(:fooditem).permit(:food_id, :order_id, :restaurant_id, :quantity)
->>>>>>> parent of 1481ee6... add accept_nested_attributes_for fooditems in order.rb
+    #params.require(:fooditem).permit(:id, :food_id, :restaurant_id, :quantity, :_destroy)
+    params.permit(:id, :order_id, :food_id, :restaurant_id, :quantity, :_destroy)
   end
 
   def set_order

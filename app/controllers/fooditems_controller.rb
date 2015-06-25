@@ -1,13 +1,5 @@
 class FooditemsController < ApplicationController
-
-  def new
-    @order = Order.find(params[:order_id])
-    @fooditem = @order.fooditems.new
-    respond_to do |format|
-      format.js
-    end
-  end
-
+  
   def update
     @fooditem = Fooditem.find(params[:id])
     if @fooditem.update(fooditem_params)
@@ -23,18 +15,6 @@ class FooditemsController < ApplicationController
     @fooditem = @order.fooditems.find(params[:id])
     if @fooditem.destroy
       flash[:success] = 'remove successfully!'
-      redirect_to edit_order_path(@order.id)
-    else
-      flash[:warning] = 'failed'
-    end
-  end
-
-  def create
-    #@order = Order.find(params[:id])
-    #@food = Food.find(params[:fooditem][:food_id])
-    @fooditem = @order.fooditems.create({ restaurant: @food.restaurant, food: @food })
-    if @fooditem.save
-      flash[:success] = 'Add successfully!'
       redirect_to edit_order_path(@order.id)
     else
       flash[:warning] = 'failed'
