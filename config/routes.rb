@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   devise_for :admins
 
   resources :restaurants do
-    get 'orders' => 'orders#index'
+    get 'orders' => 'restaurants/orders#index'
     resources :foods, controller: 'restaurants/foods'
   end
 

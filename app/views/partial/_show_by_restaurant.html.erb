@@ -1,0 +1,48 @@
+<div class="col-md-12">
+
+  <h2 class="text-center">
+    <%= link_to edit_order_path(@order.id) do %>
+      點餐號碼： <%= @order.id %>
+    <% end %>
+    | 取餐地點： <%= @order.location.name %>
+  </h2>
+
+  <% if @fooditems.exists? %>
+
+    <% Restaurant.all.each do |r| %>
+
+      <% foods = @fooditems.where(restaurant_id: r.id) %>
+
+      <% if foods.present? %>
+
+        <h3> <%= r.name %> </h3>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th> Food Name </th>
+              <th> Quantity </th>
+              <th> Last Update </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% foods.each do |s| %>
+              <tr>
+                <td> <%= s.food.name %> </td>
+                <td> <%= s.quantity %> </td>
+                <td> <%= s.updated_at.to_formatted_s(:short) %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+
+        </table>
+
+      <% end %>
+
+    <% end %>
+
+
+  <% end %>
+
+</div>

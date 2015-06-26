@@ -29,4 +29,9 @@ $(function() {
 
   });
 
+  $('#add_fooditem_btn').click(function(){
+    console.log('aaa');
+    $(this).text("繼續加入");
+  });
+
 });

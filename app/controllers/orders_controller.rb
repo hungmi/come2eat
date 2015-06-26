@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
-  before_action :set_order, except:[:new, :create, :index]
   before_action :authenticate_user!, except:[:new]
+  before_action :set_order, except:[:new, :create, :index]
   #before_action :previous_page
 
   def new
@@ -23,12 +23,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-    #@foods = Food.all
-    #@fooditem = @order.fooditems.new
-    #@fooditems = @order.fooditems
-  end
-
   def update
     if @order.update(order_params)
       flash[:success] = 'Order Updated!'
@@ -43,7 +37,9 @@ class OrdersController < ApplicationController
     @orders = current_user.orders.order('updated_at DESC')
   end
 
-  def show; end
+  def show
+    @fooditems = @order.fooditems
+  end
 
   def destroy
     if @order.destroy

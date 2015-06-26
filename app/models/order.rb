@@ -1,6 +1,10 @@
 class Order < ActiveRecord::Base
+
+  scope :recent, -> { order('updated_at DESC') }
+
   belongs_to :user
   belongs_to :location
+
   has_many :fooditems, dependent: :destroy
   accepts_nested_attributes_for :fooditems,
     :allow_destroy => true,
