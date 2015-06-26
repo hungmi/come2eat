@@ -1,4 +1,4 @@
-<h2>Create New Order</h2>
+<h2>今天想吃什麼？</h2>
 
 <% unless user_signed_in? %>
   <div id="before_order_login_form">
@@ -8,9 +8,4 @@
     <p>Sign in successfully!</p>
   </div>
 <% end %>
-
-<%= simple_form_for(@order, url: orders_path) do |f| %>
-  <%= f.input :location_id, as: :select, collection: Location.all, value: :id,:include_blank => false  %>
-  <%#= f.input :description, html: { rows: 7 } %>
-  <%= f.submit '開始點餐', class:'btn btn-primary btn-lg' %>
-<% end %>
+<%= render 'form' %>

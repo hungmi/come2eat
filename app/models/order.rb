@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
     reject_if: :reject_fooditems
 
   def reject_fooditems(attributes)
-    attributes['restaurant_id'].blank? || attributes['quantity'].blank? || attributes['food_id'].blank?
+    #attributes['restaurant_id'].blank? || attributes['quantity'].blank? || attributes['food_id'].blank?
+    false
   end
 end

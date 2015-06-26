@@ -1,18 +1,3 @@
 <h2>點餐號碼： <%= @order.id %> | 取餐地點： <%= @order.location.name %></h2>
 
-<%= simple_form_for @order do |f| %>
-  <%= f.input :description %>
-  <h3> Fooditems </h3>
-  <div id='fooditems'>
-    <%= f.simple_fields_for :fooditems do |fooditem| %>
-      <% if fooditem.object.persisted? %>
-        <%= fooditem.object.id %>
-      <% end %>
-      <%= render 'fooditem_fields', :f => fooditem %>
-    <% end %>
-    <div class='links'>
-      <%= link_to_add_association 'add fooditem', f, :fooditems %>
-    </div>
-  </div>
-  <%= f.submit 'Update', class: "btn btn-primary" %>
-<% end %>
+<%= render 'form' %>

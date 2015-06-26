@@ -13,9 +13,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.create(order_params)
+    @order = current_user.orders.new(order_params)
     if @order.save
-      #flash[:success] = 'New Order Added!'
+      flash[:success] = 'New Order Added!'
       redirect_to edit_order_path(@order)
     else
       flash[:danger] = 'Failed!'
@@ -24,13 +24,13 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @foods = Food.all
+    #@foods = Food.all
     #@fooditem = @order.fooditems.new
-    @fooditems = @order.fooditems
+    #@fooditems = @order.fooditems
   end
 
   def update
-    if @order.update_attributes(order_params)
+    if @order.update(order_params)
       flash[:success] = 'Order Updated!'
       render :edit
     else

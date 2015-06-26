@@ -38,6 +38,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'simple_form'
 
+#gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+
 gem 'cocoon', '~> 1.2.0'
 
 gem 'devise'

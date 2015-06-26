@@ -2,7 +2,7 @@
   <div class='form-inline'>
     <%= f.input :restaurant_id, as: :select, collection: Restaurant.all, label: false, :include_blank => '選擇餐廳' %>
     <%= f.input :food_id, as: :select, collection: Food.all, label: false, :include_blank => '選擇餐點' %>
-    <%= f.input :quantity, label: false %>
+    <%= f.input :quantity, label: '數量' %>
     <%= link_to_remove_association f, class: 'btn btn-default btn-xs' do %>
       X
     <% end %>
