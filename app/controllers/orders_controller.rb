@@ -8,6 +8,8 @@ class OrdersController < ApplicationController
     if current_user
       @order = current_user.orders.new
     else
+      # TODO：此目的為將使用者導向至登入頁面而不是上一頁
+      # 正確方法應自訂devise controller
       redirect_to new_user_session_path
     end
   end
