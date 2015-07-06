@@ -18,7 +18,8 @@ module ApplicationHelper
   end
 
   def index_or_login_links(condition, link_text, another_link_text)
-    if condition == 'restaurant'
+    case condition
+    when 'restaurant'
       return content_tag(:p, class:'text-center') do
         if current_restaurant
           raw(link_to link_text, restaurant_foods_path(current_restaurant.id))
@@ -26,8 +27,7 @@ module ApplicationHelper
           raw(link_to another_link_text, new_restaurant_session_path)
         end
       end
-    end
-    if condition == 'admin'
+    when 'admin'
       return content_tag(:p, class:'text-center') do
         if current_admin
           raw(link_to link_text, admin_orders_path)
