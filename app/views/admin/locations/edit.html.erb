@@ -1,5 +1,2 @@
 <h2>Edit Location</h2>
-<%= simple_form_for(@location, url: admin_location_path, method: :patch) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit 'Update', class:'btn btn-primary' %>
-<% end %>
+<%= render 'admin/locations/form' %>

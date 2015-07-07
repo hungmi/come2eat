@@ -4,11 +4,15 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :location
-  before_save :fooditems_available?
+
   has_many :fooditems, dependent: :destroy
+
   accepts_nested_attributes_for :fooditems,
     :allow_destroy => true,
     reject_if: :reject_fooditems
+
+  validate :fooditems_available?
+  validates_presence_of :name
 
   def reject_fooditems(attributes)
     attributes['restaurant_id'].blank? || attributes['quantity'].blank? || attributes['food_id'].blank?
@@ -16,7 +20,7 @@ class Order < ActiveRecord::Base
 
   def fooditems_available?
     if fooditems.empty?
-      errors.add(:base, 'Line Items present')
+      errors[:base] << 'No fooditems present'
       false
     else
       true

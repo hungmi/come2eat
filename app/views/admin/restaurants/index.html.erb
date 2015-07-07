@@ -1,0 +1,31 @@
+<div class="col-md-12">
+
+  <h2 class="text-center">所有店家</h2>
+
+  <% if @restaurants.exists? %>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th> Id </th>
+          <th> Name </th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @restaurants.each do |r| %>
+          <tr>
+            <td> <%= link_to r.id, admin_restaurant_path(r) %> </td>
+            <td> <%= r.name %> </td>
+            <td> <%= link_to('Edit', edit_admin_restaurant_path(r), class: "btn btn-info") %></td>
+            <td> <%= link_to('Delete', admin_restaurant_path(r), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", remote: true) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% else %>
+    <p>There is no restaurant yet. <%= link_to 'Create now ?', new_restaurant_path %></p>
+  <% end %>
+</div>

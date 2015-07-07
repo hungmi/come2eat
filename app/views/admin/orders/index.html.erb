@@ -1,7 +1,7 @@
 <div class="col-md-12">
 
   <h2 class="text-center"> All Orders </h2>
-
+  <%= render 'admin/orders/partial/links' %>
   <% if @orders.exists? %>
   
     <table class="table">
@@ -34,6 +34,6 @@
     </table>
 
   <% else %>
-    <p>There is no order yet. <%= link_to 'Create now ?', new_order_path %></p>
+    <%= render 'admin/orders/partial/no_order' %>
   <% end %>
 </div>

@@ -5,14 +5,14 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class= "<%= 'active' if params[:mode].nil? %>">
+        <li class= "<%= 'active' if controller_name == 'orders' %>">
         <%= link_to '所有訂單', admin_orders_path %>
         </li>
-        <li class= "<%= 'active' if params[:mode] == 'restaurants' %>">
-        <%= link_to '各店家', admin_orders_path(mode: 'restaurants') %>
+        <li class= "<%= 'active' if controller_name == 'restaurants' %>">
+        <%= link_to '管理店家', admin_restaurants_path %>
         </li>
-        <li class= "<%= 'active' if params[:mode] == 'locations' %>">
-        <%= link_to '各取餐地點', admin_orders_path(mode: 'locations') %>
+        <li class= "<%= 'active' if controller_name == 'locations' %>">
+        <%= link_to '管理地點', admin_locations_path %>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

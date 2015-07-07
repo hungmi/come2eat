@@ -23,7 +23,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :locations
-    resources :orders
+    resources :restaurants
+    resources :orders do
+      get 'by_restaurants' => 'orders#by_restaurants', on: :collection
+      get 'by_locations' => 'orders#by_locations', on: :collection
+    end
   end
 
   root 'orders#new'

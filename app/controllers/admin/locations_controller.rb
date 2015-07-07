@@ -31,7 +31,7 @@ class Admin::LocationsController < AdminController
   end
 
   def index
-    @locations = Location.all.order('updated_at DESC')
+    @locations = Location.all
   end
 
   def show

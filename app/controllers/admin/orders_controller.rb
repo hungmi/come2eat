@@ -1,14 +1,9 @@
 class Admin::OrdersController < AdminController
 
-  before_action :set_order, except:[:new, :create, :index]
+  before_action :set_order, except:[:new, :create, :index, :by_restaurants, :by_locations]
 
   def index
-    @orders =
-    case params[:mode]
-    when nil then Order.order(:user_id).recent
-    when 'restaurants' then Order.all
-    when 'locations' then Order.order(:location_id).recent
-    end
+    @orders = Order.order(:user_id).recent
   end
 
   def update
@@ -26,6 +21,14 @@ class Admin::OrdersController < AdminController
   end
 
   def destroy
+  end
+
+  def by_restaurants
+    @restaurants = Restaurant.all
+  end
+
+  def by_locations
+    @locations = Location.all
   end
 
   private

@@ -17,20 +17,20 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.new(order_params)
     if @order.save
-      flash[:success] = 'New Order Added!'
-      redirect_to edit_order_path(@order)
+      flash[:notice] = 'New Order Added!'
+      redirect_to order_path(@order)
     else
-      flash[:danger] = 'Failed!'
+      flash[:alert] = @order.errors.full_messages
       render :new
     end
   end
 
   def update
     if @order.update(order_params)
-      flash[:success] = 'Order Updated!'
-      render :edit
+      flash[:notice] = 'Order Updated!'
+      redirect_to order_path(@order)
     else
-      flash[:danger] = 'Failed!'
+      flash[:alert] = 'Failed!'
       render :edit
     end
   end
@@ -45,9 +45,9 @@ class OrdersController < ApplicationController
 
   def destroy
     if @order.destroy
-      flash[:success] = 'Order Deleted!'
+      flash[:notice] = 'Order Deleted!'
     else
-      flash[:danger] = 'Failed!'
+      flash[:alert] = 'Failed!'
     end
     redirect_to orders_path
   end

@@ -1,0 +1,36 @@
+<div class="col-md-12">
+
+  <h2 class="text-center"> All Orders </h2>
+  <%= render 'admin/orders/partial/links' %>
+  <% if @restaurants.exists? %>
+    <% @restaurants.each do |r| %>
+      <h3> <%= r.name %> </h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>品項</th>
+            <th>數量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% r.foods.each do |food| %>
+            <% if food.fooditems.exists? %>
+              <tr>
+                <td><%= food.name %></td>
+                <td>
+                  <% food.fooditems.each do |item| %>
+                    <%= "#{item.quantity}+" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>        
+        </tbody>
+      </table>
+    <% end %>
+
+  <% else %>
+    <%= render 'admin/orders/partial/no_order' %>
+  <% end %>
+
+</div>

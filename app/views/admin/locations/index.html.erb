@@ -1,12 +1,13 @@
 <div class="col-md-12">
 
-  <h2 class="text-center"> All Locations </h2>
+  <h2 class="text-center">所有地點</h2>
 
   <% if @locations.exists? %>
   
     <table class="table">
       <thead>
         <tr>
+          <th> Id </th>
           <th> Name </th>
           <th colspan="2"></th>
         </tr>
@@ -15,6 +16,7 @@
       <tbody>
         <% @locations.each do |location| %>
           <tr>
+            <td> <%= location.id %> </td> 
             <td> <%= location.name %> </td> 
             <td> <%= link_to('Edit', edit_admin_location_path(location), class: "btn btn-info") %></td>
             <td> <%= link_to('Delete', admin_location_path(location), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger") %></td>
