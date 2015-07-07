@@ -1,0 +1,24 @@
+<% if @restaurants.exists? %>
+  <table id="food_table" class="table display">
+    <thead>
+      <tr style="display: inline-table;">
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @restaurants.each do |r| %>
+        <% if r.foods.exists? %>
+          <% r.foods.each_with_index do |f, index| %>
+            <tr style="display: inline-table;">
+              <td>
+                <h3 class="text-center"><%= r.name %></h3>
+                <br><%= image_tag("#{index + 1}.jpg", size: '160x120') %><br>
+                <h4 class="text-center"><%= f.name %></h4>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

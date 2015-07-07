@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require cocoon
 //= require_tree .
@@ -33,6 +35,12 @@ $(function() {
   $('#add_fooditem_btn').click(function(){
     console.log('aaa');
     $(this).text("繼續加入");
+  });
+
+  $('#food_table').DataTable({
+    ordering: false,
+    paging: false,
+    info: false
   });
   
 });

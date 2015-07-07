@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 
   def new
     if current_user
+      @restaurants = Restaurant.all
       @order = current_user.orders.new
     else
       # TODO：此目的為將使用者導向至登入頁面而不是上一頁
