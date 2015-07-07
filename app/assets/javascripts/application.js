@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+
 $(function() {
 
   $('#before_order_login_form').on('ajax:success', function() {
@@ -33,5 +34,5 @@ $(function() {
     console.log('aaa');
     $(this).text("繼續加入");
   });
-
+  
 });
