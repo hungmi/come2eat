@@ -1,15 +1,48 @@
 <%= simple_form_for @order do |f| %>
   <h3> 您的餐點 </h3>
-  <div id='fooditems'>
-    <%= f.simple_fields_for :fooditems do |fooditem| %>
-      <%= render 'fooditem_fields', :f => fooditem %>
-    <% end %>
-    <div class='links'>
-      <%= link_to_add_association '加入餐點', f, :fooditems, class:'btn btn-default btn-lg', id:'add_fooditem_btn' %>
-    </div>
+  <div id="your_foods" class="well">
+    
   </div>
+  <div id='fooditems'>
 
-  <%= render 'orders/food_table' %>
+    <%= "<h3>您已經點了</h3>".html_safe if @order.fooditems.exists? %>
+    <%= f.simple_fields_for :fooditems do |item| %>
+      <%= render 'fooditem_fields', :f => item %>
+    <% end %>
+
+
+    <% if @restaurants.exists? %>
+      <table id="food_table" class="table display">
+        <thead>
+          <tr style="display: inline-table;">
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% @restaurants.each do |r| %>
+            <% if r.foods.exists? %>
+              <% r.foods.each_with_index do |food, index| %>
+                <tr style="display: inline-table;">
+                  <td>
+                    <h3 class="text-center"><%= r.name %></h3>
+                    <br><%= image_tag("#{index + 1}.jpg", size: '160x120') %><br>
+                    <h4 class="text-center"><%= food.name %></h4>
+
+                    <div class='links'>
+                      <%= link_to_add_association '加入餐點', f, :fooditems, :render_options => {:locals => { :restaurantid => r.id, :foodid => food.id, :qqq => 5 }}, class:'btn btn-default btn-lg', id:'add_fooditem_btn' %>
+                    </div>
+
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+
+        </tbody>
+      </table>
+    <% end %>
+  </div>
 
   <br>
   <div class="well">

@@ -2,12 +2,13 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!, except:[:new]
   before_action :set_order, except:[:new, :create, :index]
+  before_action :get_restaurants, only:[:new, :create, :edit]
   #before_action :previous_page
 
   def new
     if current_user
-      @restaurants = Restaurant.all
       @order = current_user.orders.new
+      #@fooditem = @order.fooditems.new
     else
       # TODO：此目的為將使用者導向至登入頁面而不是上一頁
       # 正確方法應自訂devise controller
@@ -22,8 +23,12 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order)
     else
       flash[:alert] = @order.errors.full_messages
+      @fooditem = @order.fooditems.new
       render :new
     end
+  end
+
+  def edit
   end
 
   def update
@@ -54,7 +59,7 @@ class OrdersController < ApplicationController
   end
 
   def create_fooditem
-    @fooditem = @order.fooditems.create({"food_id"=>"1", "restaurant_id"=>"1", "order_id"=>"28"})
+    @fooditem = @order.fooditems.create(fooditem_params)
     @fooditem.save
   end
 
@@ -70,6 +75,10 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = current_user.orders.find(params[:id])
+  end
+
+  def get_restaurants
+    @restaurants = Restaurant.all
   end
 
 end

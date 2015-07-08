@@ -10,4 +10,10 @@ class Fooditem < ActiveRecord::Base
   # if we validate order_id at orders#new, will error: fooditems order can't be blank.
   #   although we don't validate order_id, it'll still be present because of the relationship we create.
   #validates :order_id, presence: true
+
+  after_initialize :defaults
+
+  def defaults
+    self.quantity ||= 0
+  end
 end

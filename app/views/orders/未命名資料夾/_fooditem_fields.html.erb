@@ -8,12 +8,16 @@
     <tbody>
       <% @restaurants.each do |r| %>
         <% if r.foods.exists? %>
-          <% r.foods.each_with_index do |f, index| %>
+          <% r.foods.each_with_index do |food, index| %>
             <tr style="display: inline-table;">
               <td>
                 <h3 class="text-center"><%= r.name %></h3>
                 <br><%= image_tag("#{index + 1}.jpg", size: '160x120') %><br>
-                <h4 class="text-center"><%= f.name %></h4>
+                <h4 class="text-center"><%= food.name %></h4>
+                <%= f.input :quantity, label: '數量' %>
+                <div class='links'>
+                  <%= link_to_add_association '加入餐點', f, :fooditems, class:'btn btn-default btn-lg', id:'add_fooditem_btn' %>
+                </div>
               </td>
             </tr>
           <% end %>
@@ -22,3 +26,4 @@
     </tbody>
   </table>
 <% end %>
+  

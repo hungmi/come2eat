@@ -40,7 +40,12 @@ $(function() {
   $('#food_table').DataTable({
     ordering: false,
     paging: false,
-    info: false
+    info: false,
   });
+
+
+  $(".links a.add_fields").
+    data("association-insertion-method", 'append').
+    data("association-insertion-node", '#your_foods');
   
 });
