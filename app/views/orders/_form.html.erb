@@ -1,48 +1,5 @@
 <%= simple_form_for @order do |f| %>
-  <h3> 您的餐點 </h3>
-  <div id="your_foods" class="well">
-    
-  </div>
-  <div id='fooditems'>
-
-    <%= "<h3>您已經點了</h3>".html_safe if @order.fooditems.exists? %>
-    <%= f.simple_fields_for :fooditems do |item| %>
-      <%= render 'fooditem_fields', :f => item %>
-    <% end %>
-
-
-    <% if @restaurants.exists? %>
-      <table id="food_table" class="table display">
-        <thead>
-          <tr style="display: inline-table;">
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <% @restaurants.each do |r| %>
-            <% if r.foods.exists? %>
-              <% r.foods.each_with_index do |food, index| %>
-                <tr style="display: inline-table;">
-                  <td>
-                    <h3 class="text-center"><%= r.name %></h3>
-                    <br><%= image_tag("#{index + 1}.jpg", size: '160x120') %><br>
-                    <h4 class="text-center"><%= food.name %></h4>
-
-                    <div class='links'>
-                      <%= link_to_add_association '加入餐點', f, :fooditems, :render_options => {:locals => { :restaurantid => r.id, :foodid => food.id, :qqq => 5 }}, class:'btn btn-default btn-lg', id:'add_fooditem_btn' %>
-                    </div>
-
-                  </td>
-                </tr>
-              <% end %>
-            <% end %>
-          <% end %>
-
-        </tbody>
-      </table>
-    <% end %>
-  </div>
+  <%= render 'all_food_table', :f => f %>
 
   <br>
   <div class="well">
@@ -50,6 +7,20 @@
     <%= f.input :name, label: '取餐人', hint: '請避免使用容易重複的暱稱' %>
     <%= f.input :location_id, label: '取餐地點', as: :select, collection: Location.all, value: :id,:include_blank => false, hint:'請選擇中午時離您最近的地點' %>
     <%= f.input :description, label: '提醒', hint: '需要找零、不加辛香料...等等' %>
-    <%= f.button :submit, class: "btn btn-primary" %>
   </div>
+
+  <div id='fooditems' class= <%= "well" if @order.fooditems.exists? %>>
+
+    <%= content_tag(:h3, "您已經點了") if @order.fooditems.exists? %>
+    <%= f.simple_fields_for :fooditems do |item| %>
+      <%= render 'existing_fooditem_fields', :f => item %>
+    <% end %>
+  </div>
+
+  <div id="your_foods" class="well">
+    <h3> 剛加入的餐點 </h3>
+  </div>
+    
+  <h2 class="text-center"><%= f.button :submit, class: "btn btn-primary btn-lg" %></h2>
+
 <% end %>
