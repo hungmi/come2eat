@@ -40,8 +40,8 @@ $(function() {
 
   $('#food_table').DataTable({
     ordering: false,
-    paging: true,
     //"pageLength": 4,
+    paging: true,
     info: false,
     "columnDefs": [
       { "searchable": false, "targets": 0 }
