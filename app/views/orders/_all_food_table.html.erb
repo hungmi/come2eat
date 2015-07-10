@@ -11,15 +11,11 @@
         <% if r.foods.exists? %>
           <% r.foods.each_with_index do |food, index| %>
             <tr style="display: inline-table;">
-              <td>
-                <h3 class="text-center"><%= r.name %></h3>
+              <td class="text-center">
+                <h3><%= r.name %></h3>
                 <br><%= image_tag("#{index + 1}.jpg", size: '160x120') %><br>
-                <h4 class="text-center"><%= food.name %></h4>
-
-                <div class='links'>
-                  <%= link_to_add_association '加入餐點', f, :fooditems, :render_options => {:locals => { :restaurant => r.id, :food => food.id }}, class:'btn btn-default btn-lg add_fooditem_btn' %>
-                </div>
-
+                <h4><%= food.name %></h4>                
+                <%= link_to_add_association '加入餐點', f, :fooditems, :render_options => {:locals => { :restaurant => r.id, :food => food.id }}, class:'btn btn-default btn-lg add_fooditem_btn' %>
               </td>
             </tr>
           <% end %>

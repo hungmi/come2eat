@@ -43,6 +43,9 @@ $(function() {
     paging: true,
     //"pageLength": 4,
     info: false,
+    "columnDefs": [
+      { "searchable": false, "targets": 0 }
+    ]
   });
 
   // 換頁之後對新的一頁做連結初始化
