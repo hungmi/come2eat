@@ -2,8 +2,8 @@
 <html lang="zh-TW">
 <head>
   <title>Come2eat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -13,18 +13,39 @@
       <%= render "common/navbar" %>
       <%= notice_message %>
 
-      <div class="col-lg-offset-3 col-lg-6 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12">
+      <div class="col offset-l3 l6 m6 offset-s2 s8">
         <%= yield %>
       </div>
 
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <%= render "common/footer" %>
-      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <%#= render "common/footer" %>
+      </div> -->
 
     </div>
 
     <%# console %>
     
   </div>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '161214564269396',
+        xfbml      : true,
+        version    : 'v2.5'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= yield :custom_js %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </body>
 </html>

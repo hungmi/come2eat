@@ -1,15 +1,10 @@
-<%= simple_form_for @order do |f| %>
+<div role="tabpanel" class="tab-pane active" id="choose">
   <%= render 'all_food_table', :f => f %>
+</div>
+<br>
 
-  <br>
-  <div class="well">
-    <h3>訂單資訊</h3>
-    <%= f.input :name, label: '取餐人', hint: '請避免使用容易重複的暱稱' %>
-    <%= f.input :location_id, label: '取餐地點', as: :select, collection: Location.all, value: :id,:include_blank => false, hint:'請選擇中午時離您最近的地點' %>
-    <%= f.input :description, label: '提醒', hint: '需要找零、不加辛香料...等等' %>
-  </div>
-
-  <div id='fooditems' class= <%= "well" if @order.fooditems.exists? %>>
+<div role="tabpanel" class="tab-pane" id="quantity">
+  <div id='your_foods' class= <%= "well" if @order.fooditems.exists? %>>
 
     <%= content_tag(:h3, "您已經點了") if @order.fooditems.exists? %>
     <%= f.simple_fields_for :fooditems do |item| %>
@@ -17,10 +12,17 @@
     <% end %>
   </div>
 
-  <div id="your_foods" class="well">
-    <h3> 剛加入的餐點 </h3>
+  <div id="new_foods">
+    <h3> 點餐內容 </h3>
   </div>
-    
-  <h2 class="text-center"><%= f.button :submit, class: "btn btn-primary btn-lg" %></h2>
+</div>
 
-<% end %>
+<div role="tabpanel" class="tab-pane" id="check">
+  <div class="well">
+    <h3>訂單資訊</h3>
+    <%= f.input :name, label: '取餐人', hint: '請避免使用容易重複的暱稱' %>
+    <%= f.input :location_id, label: '取餐地點', as: :select, collection: Location.all, value: :id,:include_blank => false, hint:'請選擇中午時離您最近的地點' %>
+    <%= f.input :description, label: '提醒', hint: '需要找零、不加辛香料...等等' %>
+  </div>
+  <h2 class="text-center"><%= f.button :submit, class: "btn btn-primary btn-lg" %></h2>
+</div>

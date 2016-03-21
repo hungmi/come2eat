@@ -1,14 +1,16 @@
 source 'https://rubygems.org'
 
-ruby "2.2.3"
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass', '~> 3.3.4'
+# gem 'bootstrap-sass', '~> 3.3.4'
+gem "font-awesome-rails"
+gem 'materialize-sass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -45,9 +47,14 @@ gem 'cocoon', '~> 1.2.0'
 
 gem 'devise'
 
-gem "font-awesome-rails"
-
 gem "ransack"
+
+gem 'awesome_rails_console'
+
+gem 'omniauth', '1.2.2'
+gem 'omniauth-facebook', '3.0.0'
+gem 'puma'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

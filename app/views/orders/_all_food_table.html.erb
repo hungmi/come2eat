@@ -2,7 +2,7 @@
   <table id="food_table" class="table display">
     <thead>
       <tr style="display: inline-table;">
-        <th></th>
+        <th class="hidden">name</th>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
                 <h3><%= r.name %></h3>
                 <br><%= image_tag("#{index + 1}.jpg", size: '160x120') %><br>
                 <h4><%= food.name %></h4>                
-                <%= link_to_add_association '加入餐點', f, :fooditems, :render_options => {:locals => { :restaurant => r.id, :food => food.id }}, class:'btn btn-default btn-lg add_fooditem_btn' %>
+                <%= link_to_add_association '加入餐點', f, :fooditems, :render_options => {:locals => { :restaurant => r.id, :food => food.id }}, class:'btn btn-default btn-lg add_fooditem_btn', data: { 'association-insertion-node': '#new_foods', 'association-insertion-method': 'append' } %>
               </td>
             </tr>
           <% end %>

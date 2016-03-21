@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   #delete 'orders/:order_id/fooditems/:fooditem_id' => 'fooditems#destroy', as: :remove_fooditem
   # dont use route to pass params, set hash in view.
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   devise_for :restaurants
 

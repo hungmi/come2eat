@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
+//= require materialize-sprockets
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
@@ -41,23 +41,13 @@ $(function() {
   $('#food_table').DataTable({
     ordering: false,
     //"pageLength": 4,
-    paging: true,
+    paging: false,
     info: false,
     "columnDefs": [
       { "searchable": false, "targets": 0 }
     ]
   });
 
-  // 換頁之後對新的一頁做連結初始化
-  $('#food_table').on('draw.dt', function() {
-    console.log('draw');
-    $("#food_table .links a.add_fields").
-      data("association-insertion-method", 'append').
-      data("association-insertion-node", '#your_foods');  
-  });
-
-  $("#food_table .links a.add_fields").
-    data("association-insertion-method", 'append').
-    data("association-insertion-node", '#your_foods');  
+  $('ul.tabs').tabs();
   
 });

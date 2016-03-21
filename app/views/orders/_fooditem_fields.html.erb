@@ -1,8 +1,8 @@
-<div class='nested-fields'>
+<div class='nested-fields well'>
   <div class='form-inline'>
     <%= f.input :restaurant_id, as: :select, collection: Restaurant.all, label: false, selected: restaurant %>
     <%= f.input :food_id, as: :select, collection: Food.all, label: false, selected: food %>
-    <%= f.input :quantity, label: '數量' %>
+    <%= f.input :quantity, label: '數量', input_html: { default_value: '1' } %>
     <%= link_to_remove_association f, class: 'btn btn-default btn-xs' do %>
       X
     <% end %>

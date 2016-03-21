@@ -3,26 +3,28 @@
   <h2 class="text-center"> Your Orders </h2>
 
   <% if @orders.exists? %>
-  
-    <table class="table">
-      <thead>
-        <tr>
-          <th> Name </th>
-          <th> Last Update </th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <% @orders.each do |fooditem| %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
           <tr>
-            <td> <%= fooditem.food.name %> </td>
-            <td> <%= fooditem.updated_at.to_formatted_s(:short) %> </td>
+            <th> Name </th>
+            <th> Quantity </th>
+            <th> Last Update </th>
+            <th colspan="2"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-
+        </thead>
+        
+        <tbody>
+          <% @orders.each do |fooditem| %>
+            <tr>
+              <td> <%= fooditem.food.name %> </td>
+              <td> <%= fooditem.quantity %> </td>
+              <td> <%= fooditem.updated_at.to_formatted_s(:short) %> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% else %>
     <p>There is no order yet.</p>
   <% end %>

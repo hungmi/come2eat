@@ -14,7 +14,7 @@
  *= require_self
  */
 
-@import "bootstrap";
+@import "materialize";
 @import "font-awesome";
 @import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 
@@ -24,5 +24,78 @@
     a {
       color: white !important;
     }
+  }
+}
+
+.btn-facebook {
+  background-color: #3B5998;
+  width: 100%;
+}
+
+.divider {
+    color: #5d5d5d;
+    width: 90%;
+    margin: 20px 5%;
+    overflow: hidden;
+    text-align: center;   
+    line-height: 1.2em;
+}
+
+.divider:before, .divider:after {
+    content:"";
+    vertical-align: top;
+    display: inline-block;
+    width: 50%;
+    height: 0.65em;
+    border-bottom: 1px solid #adadad;
+    margin: 0 2% 0 -55%;
+}
+.divider:after {
+    margin: 0 -55% 0 2%;
+}
+
+#login-form-wrapper {
+  width: 300px;
+}
+
+.center {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+$tab-bg-color: black;
+
+#new_order_tabs {
+  left: 0px;
+  position: fixed;
+  bottom: 0px;
+  li {
+    //padding: 0px 8px 8px 8px;
+    // background-color: $tab-bg-color;
+    // & > a {
+    //   border-radius: 0px;
+    //   line-height: 2.5;
+    //   border: none;
+    //   border-bottom: 3px solid $tab-bg-color;
+    //   margin: 0px;
+    //   padding-bottom: 0px;
+    //   color: black;
+    //   background-color: $tab-bg-color;
+    //   span.fa {
+    //     color: white;
+    //     font-size: 20px;
+    //   }
+    // }
+    // &.active > a {
+    //   border-bottom: 3px solid #e74c3c;
+    // }
+  }
+}
+
+.tab-content {
+  margin-bottom: 70px;
+  .btn {
+    border-radius: 0px;
   }
 }
