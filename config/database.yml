@@ -2,7 +2,7 @@ default: &default
   timeout: 5000
   adapter: postgresql
   encoding: utf8
-  database: zuker_development
+  database: come2eat_dev
   pool: 5
 
 development:
@@ -10,7 +10,7 @@ development:
 
 test:
   <<: *default
-  database: zuker_test
+  database: come2eat_test
 
 production:
   adapter: postgresql
