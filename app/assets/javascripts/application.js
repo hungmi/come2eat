@@ -22,32 +22,32 @@
 
 $(function() {
 
-  $('#before_order_login_form').on('ajax:success', function() {
-    $(this).addClass('hide');
-    $('#you_can_order_now').removeClass('hide');
-  });
+  // $('#before_order_login_form').on('ajax:success', function() {
+  //   $(this).addClass('hide');
+  //   $('#you_can_order_now').removeClass('hide');
+  // });
 
 
-  $('.fooditem_quantity').on('change', function() {
-    console.log('aaa');
-  });
+  // $('.fooditem_quantity').on('change', function() {
+  //   console.log('aaa');
+  // });
 
-  $('.add_fooditem_btn').click(function(){
-    console.log('aaabc');
-    $(this).text("已加入");
-    $(this).addClass('disabled');
-  });
+  // $('.add_fooditem_btn').click(function(){
+  //   console.log('aaabc');
+  //   $(this).text("已加入");
+  //   $(this).addClass('disabled');
+  // });
 
-  $('#food_table').DataTable({
-    ordering: false,
-    //"pageLength": 4,
-    paging: false,
-    info: false,
-    "columnDefs": [
-      { "searchable": false, "targets": 0 }
-    ]
-  });
+  // $('#food_table').DataTable({
+  //   ordering: false,
+  //   //"pageLength": 4,
+  //   paging: false,
+  //   info: false,
+  //   "columnDefs": [
+  //     { "searchable": false, "targets": 0 }
+  //   ]
+  // });
 
-  $('ul.tabs').tabs();
+  // $('ul.tabs').tabs();
   
 });
