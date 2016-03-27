@@ -1,5 +1,5 @@
 class Restaurants::OrdersController < RestaurantsController
   def index
-    @orders = Fooditem.where(restaurant_id: current_restaurant.id)
+    @orders = current_restaurant.orders.includes(:fooditems)
   end
 end
