@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160318143521) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160318143521) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "fooditems", force: :cascade do |t|
     t.integer  "food_id"
@@ -40,9 +43,9 @@ ActiveRecord::Schema.define(version: 20160318143521) do
     t.integer  "quantity"
   end
 
-  add_index "fooditems", ["food_id"], name: "index_fooditems_on_food_id"
-  add_index "fooditems", ["order_id"], name: "index_fooditems_on_order_id"
-  add_index "fooditems", ["restaurant_id"], name: "index_fooditems_on_restaurant_id"
+  add_index "fooditems", ["food_id"], name: "index_fooditems_on_food_id", using: :btree
+  add_index "fooditems", ["order_id"], name: "index_fooditems_on_order_id", using: :btree
+  add_index "fooditems", ["restaurant_id"], name: "index_fooditems_on_restaurant_id", using: :btree
 
   create_table "foods", force: :cascade do |t|
     t.string   "name"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160318143521) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "foods", ["restaurant_id"], name: "index_foods_on_restaurant_id"
+  add_index "foods", ["restaurant_id"], name: "index_foods_on_restaurant_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -68,8 +71,8 @@ ActiveRecord::Schema.define(version: 20160318143521) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "orders", ["location_id"], name: "index_orders_on_location_id"
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+  add_index "orders", ["location_id"], name: "index_orders_on_location_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
@@ -87,8 +90,8 @@ ActiveRecord::Schema.define(version: 20160318143521) do
     t.string   "last_sign_in_ip"
   end
 
-  add_index "restaurants", ["email"], name: "index_restaurants_on_email", unique: true
-  add_index "restaurants", ["reset_password_token"], name: "index_restaurants_on_reset_password_token", unique: true
+  add_index "restaurants", ["email"], name: "index_restaurants_on_email", unique: true, using: :btree
+  add_index "restaurants", ["reset_password_token"], name: "index_restaurants_on_reset_password_token", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -109,7 +112,11 @@ ActiveRecord::Schema.define(version: 20160318143521) do
     t.string   "image"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "fooditems", "foods"
+  add_foreign_key "fooditems", "orders"
+  add_foreign_key "fooditems", "restaurants"
+  add_foreign_key "foods", "restaurants"
 end

@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Restaurant.destroy_all
+for i in 1..3 do
+  restaurants = Restaurant.create([{
+    name: "Car#{i}",     
+    email: "Car#{i}@gmail.com",
+    password: "P@ssw0rd"                 
+  }])
+end
