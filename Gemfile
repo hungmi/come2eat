@@ -55,6 +55,9 @@ gem 'omniauth', '1.2.2'
 gem 'omniauth-facebook', '3.0.0'
 gem 'puma'
 gem 'figaro'
+group :development do
+  gem 'meta_request'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
