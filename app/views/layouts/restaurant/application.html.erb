@@ -2,27 +2,21 @@
 <html lang="zh-TW">
 <head>
   <title>Restaurant | Come2eat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container-fluid restaurant">
+  <div class="container restaurant">
     <div class="row">
+      <%#= render "common/restaurant/navbar" %>
+      <%#= notice_message %>
 
-      <%= render "common/restaurant/navbar" %>
-      <%= notice_message %>
+      <%= yield %>
 
-      <div class="col-lg-offset-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <%= yield %>
-      </div>
-
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <%= render "common/restaurant/footer" %>
-      </div>
-
+      <%= render "common/restaurant/footer" %>
     </div>
-
   </div>
 </body>
 </html>
