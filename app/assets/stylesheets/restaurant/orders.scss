@@ -1,14 +1,58 @@
 // Place all the styles related to the restaurant/orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$bg-color: #333;
+
 .restaurant {
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
   .orders {
-    background-color: black;
     width: 100%;
-    span {
-      font-size: 20px;
+
+    // overwrite bootstrap
+    padding-left: 0px;
+    padding-right: 0px;
+
+    .order-numbers {
+      background-color: white;
+      overflow-y: scroll;
+      white-space: nowrap;
+
+      span {
+        font-size: 25px;
+        margin: 8px;
+      }
+    }
+
+    .order-left, .order-right {
+      background-color: $bg-color;
+      color: white;
+    }
+
+    .order-left {
+      text-align: center;
+
+      h1 {
+        font-size: 100px;
+      }
+
+      span {
+        font-size: 35px;
+      }
+    }
+
+    .order-right {
+      padding-left: 0px;
+
+      .order-item {
+        font-size: 40px;
+
+        // overwrite bootstrap
+        margin-top: 0px;
+      }
     }
   }
-
 }
