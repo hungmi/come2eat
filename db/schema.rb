@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318143521) do
+ActiveRecord::Schema.define(version: 20160327201021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,15 +37,13 @@ ActiveRecord::Schema.define(version: 20160318143521) do
   create_table "fooditems", force: :cascade do |t|
     t.integer  "food_id"
     t.integer  "order_id"
-    t.integer  "restaurant_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "quantity"
   end
 
   add_index "fooditems", ["food_id"], name: "index_fooditems_on_food_id", using: :btree
   add_index "fooditems", ["order_id"], name: "index_fooditems_on_order_id", using: :btree
-  add_index "fooditems", ["restaurant_id"], name: "index_fooditems_on_restaurant_id", using: :btree
 
   create_table "foods", force: :cascade do |t|
     t.string   "name"
@@ -64,14 +62,16 @@ ActiveRecord::Schema.define(version: 20160318143521) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "name"
-    t.integer  "user_id",     null: false
+    t.integer  "user_id",       null: false
     t.integer  "location_id"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "restaurant_id"
   end
 
   add_index "orders", ["location_id"], name: "index_orders_on_location_id", using: :btree
+  add_index "orders", ["restaurant_id"], name: "index_orders_on_restaurant_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "restaurants", force: :cascade do |t|
@@ -117,6 +117,6 @@ ActiveRecord::Schema.define(version: 20160318143521) do
 
   add_foreign_key "fooditems", "foods"
   add_foreign_key "fooditems", "orders"
-  add_foreign_key "fooditems", "restaurants"
   add_foreign_key "foods", "restaurants"
+  add_foreign_key "orders", "restaurants"
 end
