@@ -24,3 +24,10 @@ Restaurant.create([
     :password => "P@ssw0rd"                 
   },
 ])
+
+foods = ["雞腿便當", "鮮蝦燒賣", "沙朗牛排", "滷肉飯", "餛飩麵"]
+Restaurant.all.each do |r|
+  for i in 1..3 do
+    r.foods.create(name: foods[rand(0..foods.size-1)])
+  end
+end
